@@ -1,0 +1,20 @@
+{
+  "name": "dhack-website",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "server/run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtekcth/dHack-website.git"
+  },
+  "author": "Emil Hemdal",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/dtekcth/dHack-website/issues"
+  },
+  "homepage": "https://github.com/dtekcth/dHack-website#readme"
+}

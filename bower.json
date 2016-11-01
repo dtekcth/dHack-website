@@ -1,0 +1,17 @@
+{
+  "name": "dHack-website",
+  "homepage": "https://github.com/dtekcth/dHack-website",
+  "description": "",
+  "authors": [
+    "Emil Hemdal"
+  ],
+  "license": "AGPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
