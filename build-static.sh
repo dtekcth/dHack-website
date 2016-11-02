@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #
 # Copyright 2016 Emil Hemdal
@@ -20,7 +20,7 @@
 #
 
 # Check so that Node.js is installed, exit otherwise.
-if [! type "node" > /dev/null]; then
+if [[ ! `type "node"` > /dev/null ]] ; then
     echo "Node.js doesn't seem to be installed!"
     exit 1
 fi
@@ -31,7 +31,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
 # Check if release folder doesn't exist.
-if [ ! -d "${SCRIPTPATH}/release" ]; then
+if [[ ! -d "${SCRIPTPATH}/release" ]] ; then
     # Create release and revisions folder.
     mkdir --parents "${SCRIPTPATH}/release/revisions"
 else
