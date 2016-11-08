@@ -20,8 +20,26 @@
 #
 
 # Check so that Node.js is installed, exit otherwise.
-if [[ ! `type "node"` > /dev/null ]] ; then
+if [[ ! `type -p "node"` > /dev/null ]] ; then
     echo "Node.js doesn't seem to be installed!"
+    exit 1
+fi
+
+# Check so that Browserify is installed, exit otherwise.
+if [[ ! `type -p "browserify"` > /dev/null ]] ; then
+    echo "Browserify doesn't seem to be installed!"
+    exit 1
+fi
+
+# Check so that sass is installed, exit otherwise.
+if [[ ! `type -p "sass"` > /dev/null ]] ; then
+    echo "sass doesn't seem to be installed!"
+    exit 1
+fi
+
+# Check so that uglifyjs is installed, exit otherwise.
+if [[ ! `type -p "uglifyjs"` > /dev/null ]] ; then
+    echo "uglifyjs doesn't seem to be installed!"
     exit 1
 fi
 
@@ -63,8 +81,19 @@ NEWREVISIONFOLDER="${SCRIPTPATH}/release/revisions/$LASTFILENUMBER"
 mkdir $NEWREVISIONFOLDER
 
 
-# TODO: process and copy files to the new revisions folder.
+# TODO: Process and copy jade/html to the new revisions folder.
 
+mkdir "${NEWREVISIONFOLDER}/css"
+mkdir "${NEWREVISIONFOLDER}/js"
+
+browserify "${SCRIPTPATH}/client/js/main.js" --debug --outfile "${NEWREVISIONFOLDER}/js/main.js"
+
+sass "${SCRIPTPATH}/client/sass/main.scss" "${NEWREVISIONFOLDER}/css/main.css"
+
+# TODO: Fix so that the "file:" in the map file isn't displaying the whole path.
+uglifyjs --mangle --compress --screw-ie8 --output "${NEWREVISIONFOLDER}/js/main.min.js" -p 8 \
+--source-map "${NEWREVISIONFOLDER}/js/main.min.js.map" --source-map-root "/js" \
+--source-map-url "/js" -- "${NEWREVISIONFOLDER}/js/main.js"
 
 # Create/update symbolic link to point to the new revision.
 

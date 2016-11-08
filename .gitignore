@@ -40,3 +40,6 @@ jspm_packages
 
 # Releases
 release
+
+# Sass cache
+.sass-cache
